@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 30% 6%;
+    --foreground: 270 20% 92%;
+
+    --card: 260 25% 10%;
+    --card-foreground: 270 20% 92%;
+
+    --popover: 260 25% 10%;
+    --popover-foreground: 270 20% 92%;
+
+    --primary: 271 81% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 280 40% 20%;
+    --secondary-foreground: 270 20% 92%;
+
+    --muted: 260 20% 15%;
+    --muted-foreground: 270 10% 60%;
+
+    --accent: 330 80% 70%;
+    --accent-foreground: 260 30% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 18%;
+    --input: 260 20% 18%;
+    --ring: 271 81% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --roxo-profundo: 271 81% 40%;
+    --lilas-etereo: 270 95% 75%;
+    --rosa-aurora: 330 86% 70%;
+    --violeta-cosmico: 258 89% 66%;
+    --dourado-sabedoria: 48 96% 60%;
+    --preto-cosmico: 260 30% 6%;
+
+    --gradient-mystic: linear-gradient(
+      135deg,
+      hsl(271 81% 40%),
+      hsl(258 89% 66%),
+      hsl(330 86% 70%)
+    );
+    --gradient-cosmic: linear-gradient(
+      180deg,
+      hsl(260 30% 6%) 0%,
+      hsl(271 81% 20%) 50%,
+      hsl(260 30% 6%) 100%
+    );
+    --gradient-aurora: linear-gradient(
+      135deg,
+      hsl(330 86% 70% / 0.3),
+      hsl(271 81% 40% / 0.3)
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.08),
+      hsl(0 0% 100% / 0.02)
+    );
+
+    --shadow-mystic: 0 8px 32px hsl(271 81% 40% / 0.25);
+    --shadow-glow: 0 0 40px hsl(271 81% 40% / 0.3);
+    --shadow-aurora: 0 0 60px hsl(330 86% 70% / 0.2);
+
+    --font-display: "Playfair Display", serif;
+    --font-heading: "Cormorant Garamond", serif;
+    --font-body: "Inter", sans-serif;
+    --font-accent: "Dancing Script", cursive;
+
+    /* Admin nav tokens */
+    --admin-nav-bg: 260 30% 8%;
+    --admin-nav-bg-dense: 260 30% 5%;
+    --admin-nav-border: 260 20% 15%;
+    --admin-nav-text: 270 10% 65%;
+    --admin-nav-text-hover: 0 0% 100%;
+    --admin-nav-active: 271 81% 40%;
+    --admin-nav-active-foreground: 0 0% 100%;
+    --shadow-indigo: 0 4px 14px -3px hsl(271 81% 40% / 0.3);
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+    --sidebar-background: 260 25% 10%;
+    --sidebar-foreground: 270 20% 92%;
+    --sidebar-primary: 271 81% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 260 20% 15%;
+    --sidebar-accent-foreground: 270 20% 92%;
+    --sidebar-border: 260 20% 18%;
+    --sidebar-ring: 271 81% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background: hsl(var(--roxo-profundo) / 0.5);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(0 0% 100% / 0.08);
+  }
+
+  .glass-strong {
+    background: hsl(260 25% 10% / 0.8);
+    backdrop-filter: blur(40px);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+  }
+
+  .text-gradient-mystic {
+    background: var(--gradient-mystic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-aurora {
+    box-shadow: var(--shadow-aurora);
+  }
+
+  .blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+
+  .organic-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-accent {
+    font-family: var(--font-accent);
+  }
+
+  /* Admin theme — light content area with dark sidebar */
+  .admin-theme {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    /* Re-establish inherited color so elements without explicit Tailwind color
+       classes don't inherit the dark-theme near-white from body */
+    color: hsl(var(--foreground));
+  }
+
+  .stat-card {
+    @apply bg-card border border-border rounded-xl p-6 transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .stat-card:hover {
+    @apply border-primary/20;
+  }
+
+  .admin-nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200;
+    color: hsl(var(--admin-nav-text));
+  }
+
+  .admin-nav-link:hover {
+    color: hsl(var(--admin-nav-text-hover));
+    background-color: hsl(var(--admin-nav-border));
+  }
+
+  .admin-nav-link-active {
+    background-color: hsl(var(--admin-nav-active));
+    color: hsl(var(--admin-nav-active-foreground));
+    box-shadow: var(--shadow-indigo);
+  }
+
+  .admin-nav-link-active:hover {
+    background-color: hsl(var(--admin-nav-active));
+  }
+
+  .page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--gradient-mystic);
+    transform: scaleY(0);
+    transform-origin: top;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--roxo-profundo) / 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--roxo-profundo));
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

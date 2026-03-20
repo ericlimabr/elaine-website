@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE "GlobalSettings" (
+    "id" INTEGER NOT NULL DEFAULT 1,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "siteName" TEXT NOT NULL DEFAULT 'Portal Psicóloga Elaine Barbosa',
+    "siteTagline" TEXT,
+    "logoUrl" TEXT,
+    "faviconUrl" TEXT,
+    "authorName" TEXT NOT NULL DEFAULT 'Elaine Barbosa',
+    "authorBio" TEXT,
+    "authorAvatarUrl" TEXT,
+    "socialLinkedin" TEXT,
+    "socialX" TEXT,
+    "socialInstagram" TEXT,
+    "socialFacebook" TEXT,
+    "socialYoutube" TEXT,
+    "metaTitle" TEXT,
+    "metaDescription" TEXT,
+    "ogImageUrl" TEXT,
+    "googleAnalyticsId" TEXT,
+    "postsPerPage" INTEGER NOT NULL DEFAULT 9,
+    "enableComments" BOOLEAN NOT NULL DEFAULT true,
+    "maintenanceMode" BOOLEAN NOT NULL DEFAULT false,
+    "customScriptsHead" TEXT,
+    "customScriptsFooter" TEXT,
+    "footerText" TEXT DEFAULT '© Todos os direitos reservados.',
+    "contactEmail" TEXT,
+    "contactPhone" TEXT,
+
+    CONSTRAINT "GlobalSettings_pkey" PRIMARY KEY ("id")
+);

@@ -1,0 +1,17 @@
+export const BLOG_POST_CATEGORIES = [
+  "Saúde Mental",
+  "Psicologia Feminina",
+  "Maturescência",
+  "Menopausa e Climatério",
+  "Autoconhecimento",
+  "Terapia e Processo Terapêutico",
+  "Espiritualidade e Psicologia",
+  "Relacionamentos",
+  "Família e Parentalidade",
+  "Corpo e Emoções",
+  "Ansiedade e Estresse",
+  "Empoderamento Feminino",
+  "Neurociência e Comportamento",
+  "Círculos de Mulheres",
+  "Mindfulness e Bem-estar",
+]

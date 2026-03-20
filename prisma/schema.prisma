@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model GlobalSettings {
+  id        String   @id @default(uuid())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // --- IDENTITY AND BRAND ---
+  siteName    String  @default("Portal Psicóloga Elaine Barbosa")
+  siteTagline String?
+  logoUrl     String? // Link to Supabase Storage
+  faviconUrl  String? // Link to Supabase Storage
+
+  // --- AUTHOR INFORMATION (Elaine Barbosa) ---
+  authorName      String  @default("Elaine Barbosa")
+  authorBio       String? @db.Text
+  authorAvatarUrl String?
+
+  // --- SOCIAL NETWORKS ---
+  socialWhatsApp  String?
+  socialLinkedin  String?
+  socialX         String?
+  socialInstagram String?
+  socialFacebook  String?
+  socialYoutube   String?
+
+  // --- SEO AND METADADOS ---
+  metaTitle         String? // Title to Google (if different from siteName)
+  metaDescription   String? @db.Text
+  ogImageUrl        String? // Image that appears on WhatsApp when sharing the Home page.
+  googleAnalyticsId String? // Ex: G-XXXXXXXXXX
+
+  // --- BLOG PREFERENCES ---
+  postsPerPage        Int     @default(9)
+  enableComments      Boolean @default(true)
+  maintenanceMode     Boolean @default(false)
+  customScriptsHead   String? @db.Text // Inject scripts into <head>
+  customScriptsFooter String? @db.Text // Inject scripts into footer
+
+  // --- FOOTER AND CONTACT ---
+  footerText   String? @default("© Todos os direitos reservados.")
+  contactEmail String?
+  contactPhone String?
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  USER
+}
+
+model User {
+  id    String   @id @default(uuid())
+  email String   @unique
+  name  String?
+  role  UserRole @default(USER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum PostType {
+  ARTICLE
+  SERMON
+  STUDY
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Post {
+  id         String     @id @default(uuid())
+  title      String
+  slug       String     @unique
+  content    String     @db.Text
+  excerpt    String?    @db.Text
+  coverImage String?
+  status     PostStatus @default(DRAFT)
+  type       PostType   @default(ARTICLE)
+
+  // --- AUTHORSHIP FIELDS ---
+  authorId   String? // Relational link with the logged-in user
+  authorName String // Name snapshot for historical record
+  // -------------------------
+
+  // --- TAXONOMY (Tags as Categories) ---
+  tags Tag[] @relation("PostToTag")
+  // -------------------------
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  @@map("posts")
+}
+
+model Tag {
+  id   String @id @default(uuid())
+  name String @unique
+  slug String @unique
+
+  // Relations
+  posts Post[] @relation("PostToTag")
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tags")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  name    String
+  email   String
+  subject String
+  message String @db.Text
+
+  // Status for the admin to organize what has already been answered
+  read    Boolean @default(false)
+  replied Boolean @default(false)
+
+  @@map("contact_messages")
+}
