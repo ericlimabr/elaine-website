@@ -59,7 +59,12 @@ function extractToc(content: string): TocItem[] {
 
 // Retrieve all posts sorted by date
 export async function getAllPosts(): Promise<PostMetadata[]> {
-  const files = await fs.readdir(BLOG_DIR)
+  let files: string[]
+  try {
+    files = await fs.readdir(BLOG_DIR)
+  } catch {
+    return []
+  }
 
   const posts = await Promise.all(
     files
