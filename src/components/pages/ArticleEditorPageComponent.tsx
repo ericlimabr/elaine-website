@@ -558,7 +558,7 @@ export default function ArticleEditorPageComponent({
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="ARTICLE">Artigo</SelectItem>
-                      <SelectItem value="SERMON" disabled>
+                      <SelectItem value="VIDEO" disabled>
                         Vídeo
                       </SelectItem>
                       <SelectItem value="STUDY" disabled>

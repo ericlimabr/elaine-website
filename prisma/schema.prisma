@@ -70,7 +70,7 @@ model User {
 
 enum PostType {
   ARTICLE
-  SERMON
+  VIDEO
   STUDY
 }
 

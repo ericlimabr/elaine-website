@@ -203,7 +203,7 @@ export default function SobreGalleryComponent({ galleryImages }: Props) {
             Minha Jornada
           </TextReveal>
           <div ref={timelineRef} className="relative">
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-rosa/40 to-transparent" />
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5" style={{ backgroundImage: "linear-gradient(to bottom, rgba(147, 51, 234, 0.7), rgba(244, 114, 182, 0.5), transparent)" }} />
             {timeline.map((item, i) => (
               <div
                 key={item.year}

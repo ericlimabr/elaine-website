@@ -1,7 +1,7 @@
 import { PostStatus, PostType, Prisma, Tag } from "@prisma/client"
 import { Post } from "@prisma/client"
 
-export type ArticleType = PostType // "ARTICLE" | "SERMON" | "STUDY"
+export type ArticleType = PostType // "ARTICLE" | "VIDEO" | "STUDY"
 export type ArticleStatus = PostStatus // "DRAFT" | "PUBLISHED"
 export type ArticlesTags = Tag
 
@@ -9,7 +9,7 @@ export type Article = Post
 
 export const articleTypeLabels: Record<ArticleType, string> = {
   ARTICLE: "Artigo",
-  SERMON: "Vídeo",
+  VIDEO: "Vídeo",
   STUDY: "Material de Apoio",
 }
 
