@@ -2,7 +2,7 @@
 CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'EDITOR', 'USER');
 
 -- CreateEnum
-CREATE TYPE "PostType" AS ENUM ('ARTICLE', 'SERMON', 'STUDY');
+CREATE TYPE "PostType" AS ENUM ('ARTICLE', 'VIDEO', 'STUDY');
 
 -- CreateEnum
 CREATE TYPE "PostStatus" AS ENUM ('DRAFT', 'PUBLISHED');

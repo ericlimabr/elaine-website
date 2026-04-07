@@ -8,6 +8,7 @@ interface MagneticButtonProps {
   className?: string
   onClick?: () => void
   href?: string
+  disabled?: boolean
 }
 
 export default function MagneticButton({
@@ -15,6 +16,7 @@ export default function MagneticButton({
   className = "",
   onClick,
   href,
+  disabled,
 }: MagneticButtonProps) {
   const ref = useMagnetic<HTMLButtonElement>(0.3)
 
@@ -32,7 +34,7 @@ export default function MagneticButton({
   }
 
   return (
-    <button ref={ref} className={baseClass} onClick={onClick}>
+    <button ref={ref} className={baseClass} onClick={onClick} disabled={disabled}>
       <span className="relative z-10">{children}</span>
     </button>
   )

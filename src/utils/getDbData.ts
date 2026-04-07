@@ -182,3 +182,31 @@ export async function getAllAuthors() {
     },
   })
 }
+
+export async function getAllPublishedArticlesForArchive() {
+  return await prisma.post.findMany({
+    where: { status: $Enums.PostStatus.PUBLISHED, type: $Enums.PostType.ARTICLE },
+    select: {
+      title: true,
+      slug: true,
+      publishedAt: true,
+      tags: { select: { name: true } },
+    },
+    orderBy: { publishedAt: "desc" },
+  })
+}
+
+export async function getDashboardData() {
+  const [totalArticles, publishedArticles, draftPosts, recentPosts] = await Promise.all([
+    prisma.post.count({ where: { type: $Enums.PostType.ARTICLE } }),
+    prisma.post.count({ where: { type: $Enums.PostType.ARTICLE, status: $Enums.PostStatus.PUBLISHED } }),
+    prisma.post.count({ where: { status: $Enums.PostStatus.DRAFT } }),
+    prisma.post.findMany({
+      take: 5,
+      orderBy: { updatedAt: "desc" },
+      select: { id: true, title: true, type: true, status: true, updatedAt: true },
+    }),
+  ])
+
+  return { totalArticles, publishedArticles, draftPosts, recentPosts }
+}

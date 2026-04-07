@@ -1,11 +1,30 @@
-"use client"
-
 import Link from "next/link"
 import Image from "next/image"
 
 const logo = "/assets/logo.png"
 
-export default function Footer() {
+interface Props {
+  settings: {
+    socialInstagram?: string | null
+    socialYoutube?: string | null
+    socialLinkedin?: string | null
+    socialX?: string | null
+    socialFacebook?: string | null
+    socialWhatsApp?: string | null
+    contactEmail?: string | null
+  } | null
+}
+
+export default function Footer({ settings }: Props) {
+  const socialLinks = [
+    { label: "Instagram", href: settings?.socialInstagram },
+    { label: "YouTube", href: settings?.socialYoutube },
+    { label: "LinkedIn", href: settings?.socialLinkedin },
+    { label: "X", href: settings?.socialX },
+    { label: "Facebook", href: settings?.socialFacebook },
+    { label: "WhatsApp", href: settings?.socialWhatsApp },
+  ].filter((s) => !!s.href)
+
   return (
     <footer className="relative border-t border-border/30 py-16">
       <div className="container mx-auto px-6">
@@ -60,21 +79,34 @@ export default function Footer() {
               Contato
             </h4>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <span>contato@psicologaelainebarbosa.com.br</span>
-              <span>+55 61 99677-2480</span>
+              {settings?.contactEmail ? (
+                <a href={`mailto:${settings.contactEmail}`} className="hover:text-lilas transition-colors">
+                  {settings.contactEmail}
+                </a>
+              ) : null}
+              {settings?.socialWhatsApp ? (
+                <a href={`tel:${settings.socialWhatsApp.replace(/\D/g, "")}`} className="hover:text-lilas transition-colors">
+                  {settings.socialWhatsApp}
+                </a>
+              ) : null}
               <span>Atendimento Online e Presencial</span>
             </div>
-            <div className="flex gap-4 mt-4">
-              {["Instagram", "LinkedIn", "YouTube"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="text-muted-foreground hover:text-lilas transition-colors text-sm"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
+
+            {socialLinks.length > 0 && (
+              <div className="flex gap-4 mt-4">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-lilas transition-colors text-sm"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

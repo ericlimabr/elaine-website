@@ -12,13 +12,13 @@ const stats = [
   },
   {
     icon: BookOpen,
-    label: "Sermões Publicados",
+    label: "Artigos Publicados",
     value: 28,
     trend: 8,
   },
   {
     icon: Video,
-    label: "Aulas Gravadas",
+    label: "Vídeos Publicados",
     value: 15,
     trend: -3,
   },
@@ -80,7 +80,7 @@ export default function AdminPage() {
               Você tem 3 rascunhos pendentes
             </h4>
             <p className="mt-1 text-sm text-muted-foreground">
-              Continue trabalhando nos seus artigos e sermões não publicados
+              Continue trabalhando nos seus artigos e vídeos não publicados
               para manter seu portal atualizado.
             </p>
             <button className="mt-2 text-sm font-medium text-primary hover:text-primary/80 underline underline-offset-2">

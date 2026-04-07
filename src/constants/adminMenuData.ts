@@ -12,6 +12,7 @@ import {
   ImageIcon,
   Book,
   MessageCircle,
+  ListChecks,
 } from "lucide-react"
 
 export interface NavItem {
@@ -68,12 +69,12 @@ const mainNavItems: NavItem[] = [
     isAvailable: true,
   },
   { icon: Video, label: "Aulas", href: "/admin/aulas", isAvailable: false },
-  {
+  /*{
     icon: Calendar,
     label: "Agenda",
     href: "/admin/agenda",
     isAvailable: false,
-  },
+  },*/
   { icon: ImageIcon, label: "Mídia", href: "/admin/media", isAvailable: true },
   {
     icon: MessageCircle,
@@ -89,6 +90,12 @@ const systemNavItems: NavItem[] = [
     label: "Usuários",
     href: "/admin/usuarios",
     isAvailable: false,
+  },
+  {
+    icon: ListChecks,
+    label: "FAQ",
+    href: "/admin/faq",
+    isAvailable: true,
   },
   {
     icon: Settings,

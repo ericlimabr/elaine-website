@@ -52,7 +52,29 @@ export default function SettingsPageComponent({
 }) {
   const { toast } = useToast()
 
-  const [settings, setSettings] = useState<SettingsState>(initialSettings)
+  const [settings, setSettings] = useState<SettingsState>(initialSettings ?? {
+    authorName: "",
+    siteName: "",
+    siteTagline: "",
+    authorBio: "",
+    logoUrl: "",
+    authorAvatarUrl: "",
+    socialWhatsApp: "",
+    socialLinkedin: "",
+    socialX: "",
+    socialInstagram: "",
+    socialFacebook: "",
+    socialYoutube: "",
+    metaTitle: "",
+    metaDescription: "",
+    ogImageUrl: "",
+    googleAnalyticsId: "",
+    postsPerPage: 9,
+    maintenanceMode: false,
+    customScriptsHead: "",
+    customScriptsFooter: "",
+    contactEmail: "",
+  })
 
   const [activeTab, setActiveTab] = useState("geral")
   const [loading, setLoading] = useState(false)

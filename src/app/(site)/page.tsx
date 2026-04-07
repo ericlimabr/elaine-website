@@ -292,7 +292,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-32 px-6 relative">
+      <section className="py-32 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto">
           <TextReveal
             tag="h2"

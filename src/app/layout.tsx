@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { Geist, Geist_Mono, Inter, Merriweather } from "next/font/google"
 import ScrollToTopButton from "@/components/features/ScrollToTopButton"
+import WhatsAppButton from "@/components/features/WhatsAppButton"
 import CustomCursor from "@/components/ui/CustomCursor"
 import { getSystemConfig } from "@/utils/getDbData"
 import { sanitizeRawScript, isValidGoogleAnalyticsId } from "@/utils/strings"
@@ -52,6 +53,7 @@ export default async function RootLayout({
     "googleAnalyticsId",
     "customScriptsHead",
     "customScriptsFooter",
+    "socialWhatsApp",
   ])
 
   const safeGaId = isValidGoogleAnalyticsId(config?.googleAnalyticsId ?? "")
@@ -94,7 +96,8 @@ export default async function RootLayout({
         {children}
 
         <CustomCursor />
-        <ScrollToTopButton />
+        <ScrollToTopButton hidden />
+        <WhatsAppButton number={config?.socialWhatsApp ?? null} />
 
         {/* Custom Body Scripts */}
         {config?.customScriptsFooter && (

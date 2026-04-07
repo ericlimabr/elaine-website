@@ -70,7 +70,7 @@ model User {
 
 enum PostType {
   ARTICLE
-  SERMON
+  VIDEO
   STUDY
 }
 
@@ -134,4 +134,16 @@ model ContactMessage {
   replied Boolean @default(false)
 
   @@map("contact_messages")
+}
+
+model Faq {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String   @db.Text
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
 }
