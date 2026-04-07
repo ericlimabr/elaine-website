@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { ArrowUp } from "lucide-react"
 import { cn } from "@/utils/styling"
 
-export default function ScrollToTopButton() {
+export default function ScrollToTopButton({ hidden }: { hidden?: boolean }) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -29,6 +29,8 @@ export default function ScrollToTopButton() {
       behavior: "smooth",
     })
   }
+
+  if (hidden) return null
 
   return (
     <button

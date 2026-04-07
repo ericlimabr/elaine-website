@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og"
-import { getPostBySlug } from "@/lib/mdx"
+import { getPostBySlug } from "@/utils/getDbData"
 import { getSystemConfig } from "@/utils/getDbData"
 
 export const alt = "Elaine Barbosa - Blog"
@@ -9,11 +9,71 @@ export const size = {
 }
 export const contentType = "image/png"
 
-export default async function Image({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const [post, config] = await Promise.all([
+    getPostBySlug(slug),
+    getSystemConfig(["siteName"]),
+  ])
 
-  const config = await getSystemConfig(["siteName"])
+  const siteName = config?.siteName || "Elaine Barbosa"
+  const title = post?.title ?? siteName
 
+  // If the article has a cover image, use it as the OG image
+  if (post?.coverImage) {
+    return new ImageResponse(
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          position: "relative",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={post.coverImage}
+          alt={title}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        {/* Dark overlay + title */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)",
+            padding: "60px 80px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+          }}
+        >
+          <div style={{ color: "#c4b5fd", fontSize: "22px", letterSpacing: "0.05em" }}>
+            {siteName}
+          </div>
+          <div
+            style={{
+              fontSize: "52px",
+              fontWeight: "bold",
+              color: "white",
+              lineHeight: 1.2,
+            }}
+          >
+            {title}
+          </div>
+        </div>
+      </div>,
+      { ...size },
+    )
+  }
+
+  // Fallback: gradient with title
   return new ImageResponse(
     <div
       style={{
@@ -37,7 +97,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           letterSpacing: "0.1em",
         }}
       >
-        Artigo de {config?.siteName || "Elaine Barbosa"}
+        Artigo de {siteName}
       </div>
       <div
         style={{
@@ -48,9 +108,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
           lineHeight: 1.2,
         }}
       >
-        {post?.metadata.title}
+        {title}
       </div>
-      <div style={{ marginTop: "40px", display: "flex", alignItems: "center" }}>
+      <div style={{ marginTop: "40px" }}>
         <div style={{ color: "#94a3b8", fontSize: "24px" }}>
           psicologaelainebarbosa.com.br
         </div>

@@ -67,7 +67,17 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const config = await getSystemConfig(["siteName", "maintenanceMode"])
+  const config = await getSystemConfig([
+    "siteName",
+    "maintenanceMode",
+    "socialInstagram",
+    "socialYoutube",
+    "socialLinkedin",
+    "socialX",
+    "socialFacebook",
+    "socialWhatsApp",
+    "contactEmail",
+  ])
 
   return (
     <>
@@ -75,7 +85,7 @@ export default async function RootLayout({
 
       {!config?.maintenanceMode ? children : <MaintenancePageComponent />}
 
-      {!config?.maintenanceMode && <Footer />}
+      {!config?.maintenanceMode && <Footer settings={config} />}
     </>
   )
 }

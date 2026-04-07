@@ -5,6 +5,7 @@
 claude/
 /supabase/
 backup/
+.obsidian/
 
 ### NextJS ###
 # dependencies

@@ -1,17 +1,26 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import gsap from "gsap"
 
-const HIDDEN_ROUTES = ["/admin", "/login"]
+const HIDDEN_ROUTES = ["/admin", "/login", "/signup"]
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const haloRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+  const [isDesktop, setIsDesktop] = useState(false)
 
-  const hidden = HIDDEN_ROUTES.some((r) => pathname === r || pathname.startsWith(r + "/"))
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)")
+    setIsDesktop(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  const hidden = !isDesktop || HIDDEN_ROUTES.some((r) => pathname === r || pathname.startsWith(r + "/"))
 
   useEffect(() => {
     document.body.style.cursor = hidden ? "auto" : "none"
