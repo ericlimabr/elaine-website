@@ -129,6 +129,7 @@ export default function BlogPostPageComponent({ post }: Props) {
           <div
             className="prose prose-invert max-w-none
               prose-headings:font-display prose-headings:text-foreground
+              prose-h2:font-heading prose-h3:font-heading
               prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
               prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
               prose-p:font-heading prose-p:text-foreground/80 prose-p:leading-relaxed prose-p:my-4

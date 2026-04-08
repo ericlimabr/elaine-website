@@ -19,10 +19,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Playfair Display", "serif"],
-        heading: ["Cormorant Garamond", "serif"],
-        body: ["Inter", "sans-serif"],
-        accent: ["Dancing Script", "cursive"],
+        display: ["var(--font-alex-brush)", "cursive"],
+        heading: ["var(--font-nunito-sans)", "sans-serif"],
+        body: ["var(--font-nunito-sans)", "sans-serif"],
+        accent: ["var(--font-alex-brush)", "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",

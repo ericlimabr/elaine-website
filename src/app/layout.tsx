@@ -1,33 +1,24 @@
 import "@/app/globals.css"
 import type { Metadata } from "next"
 import Script from "next/script"
-import { Geist, Geist_Mono, Inter, Merriweather } from "next/font/google"
+import { Alex_Brush, Nunito_Sans } from "next/font/google"
 import ScrollToTopButton from "@/components/features/ScrollToTopButton"
 import WhatsAppButton from "@/components/features/WhatsAppButton"
 import CustomCursor from "@/components/ui/CustomCursor"
+import PageTransition from "@/components/ui/PageTransition"
 import { getSystemConfig } from "@/utils/getDbData"
 import { sanitizeRawScript, isValidGoogleAnalyticsId } from "@/utils/strings"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const alexBrush = Alex_Brush({
+  variable: "--font-alex-brush",
   subsets: ["latin"],
+  weight: "400",
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
   subsets: ["latin"],
-})
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-})
-
-const merriweather = Merriweather({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -91,10 +82,11 @@ export default async function RootLayout({
         )}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${merriweather.variable} antialiased`}
+        className={`${alexBrush.variable} ${nunitoSans.variable} antialiased`}
       >
         {children}
 
+        <PageTransition />
         <CustomCursor />
         <ScrollToTopButton hidden />
         <WhatsAppButton number={config?.socialWhatsApp ?? null} />
