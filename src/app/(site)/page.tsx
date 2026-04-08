@@ -184,16 +184,14 @@ export default function Home() {
             <p className="font-accent text-2xl md:text-3xl text-rosa mb-4">
               ✦ Elaine Barbosa · Psicóloga
             </p>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-6">
-              <span className="text-gradient-mystic">Onde a Lua Roxa</span>
-              <br />
-              <span className="text-foreground">Encontra Sua Essência</span>
+            <h1 className="font-heading font-bold leading-tight mb-6" style={{ fontSize: "clamp(1.4rem, 5.5vw, 5rem)" }}>
+              <span className="block text-gradient-mystic">Psicologia que Acolhe,</span>
+              <span className="block text-foreground">Transforma e Liberta</span>
             </h1>
           </div>
           <div ref={heroSubRef} style={{ opacity: 0 }}>
-            <p className="font-heading text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Psicóloga especializada na jornada da mulher maturescente.
-              Ciência, espiritualidade e acolhimento em cada encontro.
+            <p className="font-display text-2xl md:text-3xl text-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Psicóloga especializada na jornada da mulher maturescente. Acolhimento e sororidade em cada encontro.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contato">
@@ -245,7 +243,7 @@ export default function Home() {
             { num: 30, label: "Círculos de mulheres", suffix: "+" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="font-display text-4xl md:text-5xl font-bold text-gradient-mystic">
+              <div className="font-heading text-4xl md:text-5xl font-bold text-gradient-mystic">
                 <span className="counter-num" data-target={stat.num}>
                   0
                 </span>

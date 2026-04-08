@@ -14,25 +14,32 @@ export default function FloatingParticles({
 
   useEffect(() => {
     if (!containerRef.current) return
-    const particles = containerRef.current.querySelectorAll(".particle")
+    const container = containerRef.current
+    const { offsetWidth: w, offsetHeight: h } = container
+    const particles = container.querySelectorAll(".particle")
+
+    const animate = (p: Element) => {
+      gsap.to(p, {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        rotation: Math.random() * 360,
+        duration: Math.random() * 4 + 4,
+        ease: "sine.inOut",
+        onComplete: () => animate(p),
+      })
+    }
+
     particles.forEach((p) => {
       gsap.set(p, {
-        x: `random(0, 100)vw`,
-        y: `random(0, 100)vh`,
-        scale: `random(0.3, 1)`,
-        opacity: `random(0.15, 0.5)`,
+        x: Math.random() * w,
+        y: Math.random() * h,
+        scale: Math.random() * 0.7 + 0.3,
+        opacity: Math.random() * 0.35 + 0.15,
       })
-      gsap.to(p, {
-        y: `random(-80, 80)`,
-        x: `random(-40, 40)`,
-        rotation: `random(-180, 180)`,
-        duration: `random(4, 8)`,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: `random(0, 3)`,
-      })
+      setTimeout(() => animate(p), Math.random() * 1000)
     })
+
+    return () => gsap.killTweensOf(particles)
   }, [count])
 
   return (

@@ -180,12 +180,12 @@ export default function SobreGalleryComponent({ galleryImages }: Props) {
             >
               Elaine Barbosa
             </TextReveal>
-            <p className="font-heading text-xl text-muted-foreground leading-relaxed mb-6">
+            <p className="font-heading text-xl md:text-2xl text-muted-foreground leading-relaxed mb-6">
               Psicóloga, mulher maturescente e eterna aprendiz. Acredito que
               cada mulher carrega em si a sabedoria ancestral necessária para
               sua própria transformação.
             </p>
-            <blockquote className="border-l-2 border-rosa/40 pl-6 font-accent text-xl text-rosa/80 italic">
+            <blockquote className="border-l-2 border-rosa/40 pl-6 font-heading text-xl text-rosa/80 italic">
               "Eu não ensino ninguém a envelhecer. Eu convido mulheres a
               renascerem."
             </blockquote>
@@ -280,11 +280,10 @@ export default function SobreGalleryComponent({ galleryImages }: Props) {
                 key={src}
                 onClick={() => setLightboxIndex(i)}
                 style={{ opacity: 0 }}
-                className={`gallery-item group relative overflow-hidden rounded-2xl cursor-pointer ${
-                  i === 0 || i === 5
-                    ? "row-span-2 aspect-[3/4]"
-                    : "aspect-square"
-                }`}
+                className={`gallery-item group relative overflow-hidden rounded-2xl cursor-pointer ${i === 0 || i === 5
+                  ? "row-span-2 aspect-[3/4]"
+                  : "aspect-square"
+                  }`}
               >
                 <Image
                   src={src}
@@ -292,6 +291,7 @@ export default function SobreGalleryComponent({ galleryImages }: Props) {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0" style={{ backgroundColor: "hsl(271 81% 40% / 0.13)" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </button>
             ))}
@@ -303,11 +303,10 @@ export default function SobreGalleryComponent({ galleryImages }: Props) {
       <button
         onClick={scrollToTop}
         aria-label="Voltar ao topo"
-        className={`fixed bottom-8 left-8 z-[90] w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg transition-all duration-500 hover:scale-110 glow-primary ${
-          showScrollTop
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10 pointer-events-none"
-        }`}
+        className={`fixed bottom-8 left-8 z-[90] w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg transition-all duration-500 hover:scale-110 glow-primary ${showScrollTop
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
